@@ -1,0 +1,256 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* SUPREMA Design System - Luxury Minimalist E-commerce */
+
+@layer base {
+  :root {
+    /* Core Colors - Pure Minimalism */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 11%;
+    
+    /* Primary - Deep Charcoal */
+    --primary: 0 0% 11%;
+    --primary-foreground: 0 0% 100%;
+    
+    /* Secondary - Warm Gray */
+    --secondary: 0 0% 47%;
+    --secondary-foreground: 0 0% 100%;
+    
+    /* Muted - Light Gray */
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 47%;
+    
+    /* Accent */
+    --accent: 0 0% 94%;
+    --accent-foreground: 0 0% 11%;
+    
+    /* Card */
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 11%;
+    
+    /* Popover */
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 11%;
+    
+    /* Border - Ultra Subtle */
+    --border: 0 0% 94%;
+    --border-subtle: 0 0% 90%;
+    --input: 0 0% 94%;
+    --ring: 0 0% 11%;
+    
+    /* Destructive */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    
+    --radius: 0px;
+    
+    /* Custom Properties */
+    --header-height: 80px;
+    --transition-base: 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+    --transition-smooth: 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+  }
+
+  /* Typography */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted-foreground) / 0.3);
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground) / 0.5);
+  }
+}
+
+@layer components {
+  /* Button Variants */
+  .btn-primary {
+    @apply relative overflow-hidden bg-primary text-primary-foreground px-8 py-4 text-xs uppercase tracking-[0.2em] font-medium;
+    transition: all var(--transition-base);
+  }
+
+  .btn-primary::before {
+    content: '';
+    @apply absolute inset-0 bg-secondary;
+    transform: translateX(-100%);
+    transition: transform var(--transition-base);
+  }
+
+  .btn-primary:hover::before {
+    transform: translateX(0);
+  }
+
+  .btn-primary span {
+    @apply relative z-10;
+  }
+
+  .btn-outline {
+    @apply relative border border-primary bg-transparent text-primary px-8 py-4 text-xs uppercase tracking-[0.2em] font-medium overflow-hidden;
+    transition: color var(--transition-base);
+  }
+
+  .btn-outline::before {
+    content: '';
+    @apply absolute inset-0 bg-primary;
+    transform: translateY(100%);
+    transition: transform var(--transition-base);
+  }
+
+  .btn-outline:hover {
+    @apply text-primary-foreground;
+  }
+
+  .btn-outline:hover::before {
+    transform: translateY(0);
+  }
+
+  .btn-outline span {
+    @apply relative z-10;
+  }
+
+  /* Link Underline Animation */
+  .link-hover {
+    @apply relative;
+  }
+
+  .link-hover::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-full h-px bg-current;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform var(--transition-base);
+  }
+
+  .link-hover:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  /* Product Card */
+  .product-card {
+    @apply relative group cursor-pointer;
+  }
+
+  .product-card-image {
+    @apply relative aspect-[3/4] overflow-hidden bg-muted;
+  }
+
+  .product-card-actions {
+    @apply absolute inset-x-0 bottom-0 flex justify-center gap-2 p-4;
+    transform: translateY(100%);
+    opacity: 0;
+    transition: all var(--transition-base);
+  }
+
+  .product-card:hover .product-card-actions {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  /* Section Spacing */
+  .section-padding {
+    @apply py-20 md:py-32;
+  }
+
+  .container-luxury {
+    @apply max-w-[1400px] mx-auto px-6 md:px-12;
+  }
+
+  /* Section Title */
+  .section-title {
+    @apply text-3xl md:text-4xl lg:text-5xl text-center mb-4;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .section-subtitle {
+    @apply text-sm uppercase tracking-[0.3em] text-muted-foreground text-center mb-12;
+  }
+
+  /* Mega Menu */
+  .mega-menu {
+    @apply absolute top-full left-0 w-full bg-white border-b border-border;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all var(--transition-base);
+  }
+
+  .mega-menu-trigger:hover .mega-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  /* Image Hover Zoom */
+  .img-zoom {
+    @apply transition-transform duration-700 ease-out;
+  }
+
+  .group:hover .img-zoom {
+    transform: scale(1.05);
+  }
+
+  /* Glass Effect */
+  .glass {
+    @apply bg-white/80 backdrop-blur-lg;
+  }
+}
+
+@layer utilities {
+  /* Text Styles */
+  .text-display {
+    font-family: 'Playfair Display', serif;
+    @apply text-5xl md:text-6xl lg:text-7xl leading-tight;
+  }
+
+  .text-heading {
+    font-family: 'Playfair Display', serif;
+    @apply text-3xl md:text-4xl leading-tight;
+  }
+
+  .text-subheading {
+    @apply text-xs uppercase tracking-[0.3em] font-medium;
+  }
+
+  .text-body-sm {
+    @apply text-sm leading-relaxed;
+  }
+
+  /* Animation Delays */
+  .delay-100 { animation-delay: 100ms; }
+  .delay-200 { animation-delay: 200ms; }
+  .delay-300 { animation-delay: 300ms; }
+  .delay-400 { animation-delay: 400ms; }
+  .delay-500 { animation-delay: 500ms; }
+}
